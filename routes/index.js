@@ -6,10 +6,13 @@ const feedbackRouter = require("./feedback");
 
 // TODO: import your diagnostics route
 
+const diagnosticsRouter = require("./diagnostics")
+
 const app = express();
 
 app.use("/tips", tipsRouter);
 app.use("/feedback", feedbackRouter);
+app.use ("/diagnostics", diagnosticsRouter);
 
 // TODO: Initialize diagnostics route
 

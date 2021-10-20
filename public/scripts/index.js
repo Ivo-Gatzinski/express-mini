@@ -126,6 +126,26 @@ const showErrors = (errorObj) => {
 const submitDiagnostics = (submissionObj) => {
   // TODO: your code here. Use Fetch to send a request with json to create a new
   // diagnostic message.
+  fetch("/api/diagnostics", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    // Use JSON.stringify to convert the review object to a string because the
+    // Fetch API does not accept a plain object as the body of a request but
+    // does allow strings.
+    body: JSON.stringify(submissionObj),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Successful POST request:", data);
+      return data;
+    })
+    // Catch will run if an error occurs in any of the preceding promises or
+    // callbacks passed to a `.then()`
+    .catch((error) => {
+      console.error("Error in POST request:", error);
+    });
   console.info(
     "⚠️ Create the logic for the fetch POST request in scripts/index.js"
   );
